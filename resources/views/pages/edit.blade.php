@@ -1,18 +1,20 @@
 <x-layouts.app>
-    <form action="{{ route('pages.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('pages.update', $page) }}" method="post" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
+
         <label for="title">Titolo</label>
-        <input type="text" name="title" id="title" value="{{ old('value') }}">
+        <input type="text" name="title" id="title" value="{{ old('value', $page->title) }}">
         @error('title')
             {{ $message }}
         @enderror
         <label for="content">Contenuto</label>
-        <textarea name="content" id="content">{{ old('content') }}</textarea>
+        <textarea name="content" id="content">{{ old('content', $page->content) }}</textarea>
         @error('content')
             {{ $message }}
         @enderror
         <label for="image">Immagine</label>
-        <input type="file" name="image" id="image" value="{{ old('image') }}">
+        <input type="file" name="image" id="image" value="{{ old('image', $page->getFirstMediaUrl()) }}">
         @error('image')
             {{ $message }}
         @enderror

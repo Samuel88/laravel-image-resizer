@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePageRequest;
+use App\Http\Requests\UpdatePageRequest;
 use App\Models\Page;
 use Illuminate\Http\Request;
 
@@ -31,8 +32,10 @@ class PageController extends Controller
     public function store(StorePageRequest $request)
     {
         $page = Page::create($request->validated());
-        $page->addMediaFromRequest('image')
-            ->toMediaCollection();
+        if ($request->hasFile('image')) {
+            $page->addMediaFromRequest('image')
+                ->toMediaCollection();
+        }
 
         return redirect(route('pages.index'))
             ->with('success','Pagina creata con successo');
@@ -49,24 +52,32 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Page $page)
     {
-        //
+        return view('pages.edit', compact('page'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdatePageRequest $request, Page $page)
     {
-        //
+        $page->update($request->validated());
+        if ($request->hasFile('image')) {
+            $page->clearMediaCollection();
+            $page->addMediaFromRequest('image')
+                ->toMediaCollection();
+        }
+        return redirect(route('pages.index'))
+            ->with('success','Pagina aggiornata con successo');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Page $page)
     {
-        //
+        $page->delete();
+        return redirect(route('pages.index'));
     }
 }

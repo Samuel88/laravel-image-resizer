@@ -18,5 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('pages',PageController::class)
-    ->only(['index', 'create', 'store']);
+Route::resource('pages',PageController::class);
