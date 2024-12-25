@@ -9,7 +9,7 @@
                 <button type="submit">Cancella</button>
             </form>
             <p>{{ $page->content }}</p>
-            <img src="{{ $page->getFirstMediaUrl() }}" alt="">
+            <img src="{{ $page->getFirstMediaUrl('images', 'thumb') }}" alt="">
         </div>
     @endforeach
 </x-app>

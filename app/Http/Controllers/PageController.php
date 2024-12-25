@@ -34,7 +34,7 @@ class PageController extends Controller
         $page = Page::create($request->validated());
         if ($request->hasFile('image')) {
             $page->addMediaFromRequest('image')
-                ->toMediaCollection();
+                ->toMediaCollection('images');
         }
 
         return redirect(route('pages.index'))
@@ -64,9 +64,9 @@ class PageController extends Controller
     {
         $page->update($request->validated());
         if ($request->hasFile('image')) {
-            $page->clearMediaCollection();
+            //$page->clearMediaCollection();
             $page->addMediaFromRequest('image')
-                ->toMediaCollection();
+                ->toMediaCollection('images');
         }
         return redirect(route('pages.index'))
             ->with('success','Pagina aggiornata con successo');

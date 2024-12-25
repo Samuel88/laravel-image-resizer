@@ -17,3 +17,5 @@
 ### Da Visionare
 - https://medium.com/@dkhorev/why-are-model-observers-in-laravel-a-bad-practice-8feb8526c95e
 - https://www.youtube.com/watch?v=FeIYurxiggU
+- https://spatie.be/docs/laravel-medialibrary/v11/working-with-media-collections/defining-media-collections
+- https://spatie.be/docs/laravel-medialibrary/v11/converting-images/defining-conversions
