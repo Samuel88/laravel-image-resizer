@@ -16,3 +16,4 @@
 
 ### Da Visionare
 - https://medium.com/@dkhorev/why-are-model-observers-in-laravel-a-bad-practice-8feb8526c95e
+- https://www.youtube.com/watch?v=FeIYurxiggU

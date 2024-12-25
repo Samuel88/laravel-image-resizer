@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::resource('pages',PageController::class)
-    ->only('index');
+    ->only(['index', 'create', 'store']);

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePageRequest;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,7 +13,8 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        $pages = Page::all();
+        return view('pages.index', compact('pages'));
     }
 
     /**
@@ -19,15 +22,20 @@ class PageController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePageRequest $request)
     {
-        //
+        $page = Page::create($request->validated());
+        $page->addMediaFromRequest('image')
+            ->toMediaCollection();
+
+        return redirect(route('pages.index'))
+            ->with('success','Pagina creata con successo');
     }
 
     /**
