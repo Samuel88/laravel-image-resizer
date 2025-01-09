@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePageRequest;
 use App\Http\Requests\UpdatePageRequest;
 use App\Models\Page;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -33,8 +32,13 @@ class PageController extends Controller
     {
         $page = Page::create($request->validated());
         if ($request->hasFile('image')) {
+            /*
             $page->addMediaFromRequest('image')
-                ->toMediaCollection('images');
+                ->preservingOriginal()
+                ->toMediaCollection('image');
+            */
+            $page->addMediaFromRequest('image')
+                ->toMediaCollection('main');
         }
 
         return redirect(route('pages.index'))
@@ -64,9 +68,14 @@ class PageController extends Controller
     {
         $page->update($request->validated());
         if ($request->hasFile('image')) {
-            //$page->clearMediaCollection();
+            $page->clearMediaCollection();
+            /*
             $page->addMediaFromRequest('image')
-                ->toMediaCollection('images');
+                ->preservingOriginal()
+                ->toMediaCollection('image');
+            */
+            $page->addMediaFromRequest('image')
+                ->toMediaCollection('main');
         }
         return redirect(route('pages.index'))
             ->with('success','Pagina aggiornata con successo');

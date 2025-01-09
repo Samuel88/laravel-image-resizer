@@ -18,6 +18,6 @@
         @error('image')
             {{ $message }}
         @enderror
-        <button type="submit">Crea</button>
+        <button type="submit">Edita</button>
     </form>
 </x-layouts.app>

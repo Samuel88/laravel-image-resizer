@@ -15,21 +15,41 @@ class Page extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'content'];
 
     public function getRouteKeyName(): string {
         return 'slug';
     }
 
     public function registerMediaCollections(): void {
-        $this->addMediaCollection('images')
-            ->singleFile();
+        $this
+            ->addMediaCollection('main')
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media) {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->width(100)
+                    ->height(100);
+                $this
+                    ->addMediaConversion('small')
+                    ->width(300)
+                    ->height(300);
+                $this
+                    ->addMediaConversion('medium')
+                    ->width(600)
+                    ->height(600);
+            });
+
+        /*
+        $this
+            ->addMediaCollection('image')
+            ->singleFile()
+            ->withResponsiveImages();
+        */
     }
 
     public function registerMediaConversions(?Media $media = null): void
     {
-        $this->addMediaConversion('thumb')
-              ->width(100)
-              ->height(100);
+        // Not Used Now
     }
 }
