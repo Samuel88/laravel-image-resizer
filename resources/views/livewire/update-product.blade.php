@@ -7,5 +7,15 @@
     @error('form.price')
         <span class="error">{{ $message }}</span>
     @enderror
+    @foreach ($form->images as $image)
+        <img src="{{ $image->getUrl() }}" alt="">
+    @endforeach
+    <input type="file" name="images" id="images" wire:model="form.images_tmp" multiple>
+    @foreach ($form->images_tmp as $image)
+        <img src="{{ $image->temporaryUrl() }}" alt="">
+    @endforeach
+    @error('form.images.*')
+        <span class="error">{{ $message }}</span>
+    @enderror
     <button type="submit">Aggiorna</button>
 </form>

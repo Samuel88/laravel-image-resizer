@@ -2,7 +2,10 @@
     @foreach ($products as $product)
         <div class="product">
             <div class="name">{{ $product->name }}</div>
-            <img src="{{ $product->getFirstMediaUrl('image') }}" alt="" class="image">
+            @foreach ($product->getMedia('images') as $image)
+                <img src="{{ $image->getUrl() }}" alt="" class="image">
+            @endforeach
         </div>
     @endforeach
+    {{ $products->links() }}
 </div>

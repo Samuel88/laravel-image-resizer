@@ -5,9 +5,12 @@ namespace App\Livewire;
 use App\Livewire\Forms\ProductForm;
 use App\Models\Product;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class UpdateProduct extends Component
 {
+    use WithFileUploads;
+
     public ProductForm $form;
 
     public function mount(Product $product) {

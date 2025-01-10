@@ -7,13 +7,11 @@
     @error('form.price')
         <span class="error">{{ $message }}</span>
     @enderror
-    <input type="file" name="image" id="image" wire:model="form.image">
-    {{ dump($form->image) }}
-    @if ($form->image)
-        {{ get_class($form->image) }}
-        <img src="{{ $form->image->temporaryUrl() }}">
-    @endif
-    @error('form.image')
+    <input type="file" name="images" id="images" wire:model="form.images_tmp" multiple>
+    @foreach ($form->images_tmp as $image)
+        <img src="{{ $image->temporaryUrl() }}" alt="">
+    @endforeach
+    @error('form.images.*')
         <span class="error">{{ $message }}</span>
     @enderror
     <button type="submit">Crea</button>
