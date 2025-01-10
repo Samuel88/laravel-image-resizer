@@ -19,3 +19,6 @@
 - https://www.youtube.com/watch?v=FeIYurxiggU
 - https://spatie.be/docs/laravel-medialibrary/v11/working-with-media-collections/defining-media-collections
 - https://spatie.be/docs/laravel-medialibrary/v11/converting-images/defining-conversions
+
+### Todo
+- Guardare un pattern per aggiornare solo un'immagine
