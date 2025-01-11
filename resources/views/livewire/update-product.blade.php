@@ -8,7 +8,10 @@
         <span class="error">{{ $message }}</span>
     @enderror
     @foreach ($form->images as $image)
-        <img src="{{ $image->getUrl() }}" alt="">
+        <div>
+            <button wire:click="removeProductImage({{ $image->id }})">Remove</button>
+            <img src="{{ $image->getUrl() }}" alt="">
+        </div>
     @endforeach
     <input type="file" name="images" id="images" wire:model="form.images_tmp" multiple>
     @foreach ($form->images_tmp as $image)

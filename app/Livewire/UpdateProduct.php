@@ -6,6 +6,7 @@ use App\Livewire\Forms\ProductForm;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class UpdateProduct extends Component
 {
@@ -16,6 +17,11 @@ class UpdateProduct extends Component
     public function mount(Product $product) {
         $this->form->setProduct($product);
     }
+
+    public function removeProductImage(Media $media) {
+        $media->delete();
+    }
+
     public function save() {
         $this->form->update();
         session()->flash("status","Prodotto aggiornato con successo");
