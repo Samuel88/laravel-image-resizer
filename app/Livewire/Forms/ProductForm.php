@@ -30,7 +30,11 @@ class ProductForm extends Form
         $this->product = $product;
         $this->name = $product->name;
         $this->price = $product->price;
-        $this->images = $product->getMedia('images')->all();
+        $this->getProductImages();
+    }
+
+    public function getProductImages() {
+        $this->images = $this->product->getMedia('images')->all();
     }
 
     public function store() {
