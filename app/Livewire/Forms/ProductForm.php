@@ -45,13 +45,7 @@ class ProductForm extends Form
                 ->addMedia($image)
                 ->toMediaCollection('images');
         }
-        /*
         // https://rappasoft.com/blog/creating-a-filepond-component-using-blade-livewire-alpinejs-then-validating-storing-with-spatie-media-library
-        collect($this->images)->each(fn($image) =>
-            $post->addMedia($image->getRealPath())->toMediaCollection('images')
-        );
-        */
-
         // https://medium.com/@laravelprotips/discover-hidden-gems-in-laravel-spatie-media-library-c4578aa0909e
     }
 

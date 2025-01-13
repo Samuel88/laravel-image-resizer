@@ -21,7 +21,6 @@ class UpdateProduct extends Component
     public function removeProductImage(Media $media) {
         $media->delete();
         $this->form->getProductImages();
-        //dd($this->form->product->getMedia('images')->all());
     }
 
     public function save() {
